@@ -24,7 +24,21 @@ _A very basic, jQuery-based, responsive image slider/carousel with aspect ratio 
     <script src="/path/to/jquery.sunslide.min.js"></script>
     <script>
     !(function ($) {
-        $('.sunslide').sunslide();
+        // these options are the default options for the plugin
+        // and are only included for reference
+        var options = {
+            auto: true,
+            captions: true,
+            nav: true,
+            nextText: "&rarr;",
+            play: true,
+            pause: true,
+            prevText: "&larr;",
+            ratio: "first",
+            stopOnNav: true,
+            timeout: 5000
+        }
+        $('.sunslide').sunslide(options);
     })(jQuery);
     </script>
 </body>
@@ -115,7 +129,7 @@ options:
 ```
 
 ### stopOnNav
-Stop the auto slide transition once any nav link is clicked? Once stopped, there is no restart.
+Stop the auto slide transition once any nav link is clicked? Once stopped, it can only be restarted with the play/pause button if the `play` option is `true`.
 ```
 type: boolean
 default: true
@@ -129,7 +143,7 @@ dependency: auto = true, nav = true
 Time, in milliseconds, between auto slide transitions.
 ```
 type: integer
-default: 4000
+default: 5000
 dependency: auto = true
 ```
 

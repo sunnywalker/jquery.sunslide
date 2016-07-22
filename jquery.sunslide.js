@@ -5,14 +5,14 @@
         var settings = $.extend({
             "auto": true,             // Boolean: Animate automatically, true or false
             "captions": true,         // Boolean: Add captions based on alt text, true or false
-            "timeout": 4000,          // Integer: Time between slide transitions, in milliseconds
             "nav": true,              // Boolean: Show navigation, true or false
             "nextText": "&rarr;",     // String: Text for the "next" button
             "pause": true,            // Boolean: Pause on hover over the slider, true or false
             "play": true,             // Boolean: Add play/pause button, true or false
             "prevText": "&larr;",     // String: Text for the "previous" button
             "ratio": "first",         // String: Size to 'min', 'max', or 'first' (first slide) ratio
-            "stopOnNav": true         // Boolean: Stop auto slide transitions when a nav is interacted with, true or false
+            "stopOnNav": true,        // Boolean: Stop auto slide transitions when a nav is interacted with, true or false
+            "timeout": 5000           // Integer: Time between slide transitions, in milliseconds
         }, options);
         var ns_index = 0; // namespace index
 
