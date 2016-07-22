@@ -4,7 +4,7 @@ _A very basic, jQuery-based, responsive image slider/carousel with captions and 
 
 Captions are pulled from the `alt` parameter of the `img` tag.
 
-SVGs are supported, and like images, must include a pixel `width` and `height` attribute. Captions are pulled from the SVG’s `desc` or `title` tags.
+SVGs are supported, and like images, **must include a pixel `width` and `height` attribute**. Captions are pulled from the SVG’s `<desc>` or `<title>` tags.
 
 ## Sample
 
@@ -54,7 +54,7 @@ The plugin should work with jQuery 1.9 or later.
 
 Each slide must contain only `<img>` or `<svg>` tag which should include both a `width` and `height` attribute.
 
-`<img>` tags must contain the `alt` attribute (which is already required for acessibility). `<svg>`
+`<img>` tags must contain the `alt` attribute (which is already required for acessibility). `<svg>` tags must contain a `<title>` and/or `<desc>` tag for captions.
 
 ## Options
 
