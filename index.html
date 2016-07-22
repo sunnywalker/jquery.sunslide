@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jquery.sunslide Samples</title>
+    <link rel="stylesheet" href="jquery.sunslide.css">
+    <style>
+    * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+    body { font-family: sans-serif; }
+    .sunslide-wrapper { background: transparent 0 0 url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCA0OCA0OCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIG9wYWNpdHk9IjAuMTI1Ii8+PHJlY3QgeD0iMjQiIHk9IjI0IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIG9wYWNpdHk9IjAuMTI1Ii8+PC9zdmc+) repeat; }
+    </style>
+</head>
+<body>
+<svg style="display: none;"><defs>
+    <symbol id="svg-slide1" viewBox="0 0 900 506"><rect width="900" height="506" fill="#f99"/><circle cx="450" cy="253" r="253" fill="#c66"/></symbol>
+    <symbol id="svg-slide2" viewBox="0 0 640 480"><rect width="640" height="506" fill="#9f9"/><rect width="200" height="200" x="220" y="140" fill="#6c6"/></symbol>
+</defs></svg>
+<div id="page-wrapper">
+    <h1>jquery.sunslide Samples</h1>
+    <h2>Sizes to Max Aspect Ratio</h2>
+    <ul class="sunslide" id="max-ratio">
+        <li><img src="http://lorempixel.com/900/506/cats" alt="Slide 1" width="900" height="506"></li>
+        <li><img src="http://lorempixel.com/640/480/abstract" alt="Slide 2" width="640" height="480"></li>
+        <li><img src="http://lorempixel.com/900/506/food" alt="Slide 3" width="900" height="506"></li>
+        <li><img src="http://lorempixel.com/1000/500/nature" alt="Slide 4" width="1000" height="500"></li>
+        <li><svg width="900" height="506"><title>Slide 5</title><use xlink:href="#svg-slide1"/></svg></li>
+        <li><svg width="640" height="480"><title>Slide 6</title><desc>This is slide number 6.</desc><use xlink:href="#svg-slide2"/></svg></li>
+    </ul>
+    <h2>Sizes to Min Aspect Ratio</h2>
+    <ul class="sunslide" id="min-ratio">
+        <li><img src="http://lorempixel.com/900/506/cats" alt="Slide 1" width="900" height="506"></li>
+        <li><img src="http://lorempixel.com/640/480/abstract" alt="Slide 3" width="640" height="480"></li>
+        <li><img src="http://lorempixel.com/900/506/food" alt="Slide 2" width="900" height="506"></li>
+        <li><img src="http://lorempixel.com/1000/500/nature" alt="Slide 4" width="1000" height="500"></li>
+        <li><svg width="900" height="506"><title>Slide 5</title><use xlink:href="#svg-slide1"/></svg></li>
+        <li><svg width="640" height="480"><title>Slide 6</title><desc>This is slide number 6.</desc><use xlink:href="#svg-slide2"/></svg></li>
+    </ul>
+    <h2>Sizes to First Slide’s Aspect Ratio</h2>
+    <ul class="sunslide" id="first-ratio">
+        <li><img src="http://lorempixel.com/900/506/cats" alt="Slide 1" width="900" height="506"></li>
+        <li><img src="http://lorempixel.com/640/480/abstract" alt="Slide 3" width="640" height="480"></li>
+        <li><img src="http://lorempixel.com/900/506/food" alt="Slide 2" width="900" height="506"></li>
+        <li><img src="http://lorempixel.com/1000/500/nature" alt="Slide 4" width="1000" height="500"></li>
+        <li><svg width="900" height="506"><title>Slide 5</title><use xlink:href="#svg-slide1"/></svg></li>
+        <li><svg width="640" height="480"><title>Slide 6</title><desc>This is slide number 6.</desc><use xlink:href="#svg-slide2"/></svg></li>
+    </ul>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam aspernatur temporibus quidem, iure soluta quia, repudiandae corporis, modi, molestiae provident ad numquam minima a. Corporis iusto beatae autem saepe dolor.</p>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="jquery.sunslide.min.js"></script>
+<script>
+$('#max-ratio').sunslide({
+    ratio: 'max'
+});
+$('#min-ratio').sunslide({
+    ratio: 'min'
+});
+$('#first-ratio').sunslide();
+</script>
+</body>
+</html>

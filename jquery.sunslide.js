@@ -30,9 +30,11 @@
                 vp_width = 0,
                 max_width = 0,
                 max_height = 0,
-                min_ratio = 2,
+                min_ratio = 99,
                 max_ratio = 0,
-                resize_ratio;
+                first_width = 0,
+                first_height = 0,
+                resize_ratio = 0;
 
             t.wrap('<div class="' + namespace + ' sunslide-wrapper"></div>');
             container = t.parent();
@@ -79,6 +81,17 @@
                 resetTimer();
             }
 
+            // get the alt of an img or the title
+            function getCaption(el) {
+                var caption = '';
+                if (el.is('svg') && el.children('title').length || el.children('desc').length) {
+                    caption = el.children('desc').length ? el.children('desc').text() : el.children('title').text();
+                } else if (el.is('img')) {
+                    caption = el.attr('alt') || '';
+                }
+                return caption;
+            }
+
             function prevSlide() {
                 var a = slides.filter('.sunslide-active-slide'),
                     n = slides.filter('.sunslide-next-slide'),
@@ -86,11 +99,12 @@
                 if (!f.length) {
                     f = $(slides[slides.length - 1]);
                 }
-                f.removeClass('sunslide-hidden-slide').addClass('sunslide-active-slide');
+                a.attr('aria-live', '');
+                f.removeClass('sunslide-hidden-slide').addClass('sunslide-active-slide').attr('aria-live', 'polite');
                 a.removeClass('sunslide-active-slide').addClass('sunslide-next-slide');
                 n.removeClass('sunslide-next-slide').addClass('sunslide-hidden-slide');
                 if (settings.captions) {
-                    caption.text(f.find('img').attr('alt'));
+                    caption.text(getCaption(f.find('img,svg')));
                 }
             }
 
@@ -104,11 +118,11 @@
                 if (!f.length) {
                     f = $(slides[0]);
                 }
-                a.removeClass('sunslide-active-slide').addClass('sunslide-hidden-slide');
-                n.removeClass('sunslide-next-slide').addClass('sunslide-active-slide');
+                a.removeClass('sunslide-active-slide').addClass('sunslide-hidden-slide').attr('aria-live', '');
+                n.removeClass('sunslide-next-slide').addClass('sunslide-active-slide').attr('aria-live', 'polite');
                 f.removeClass('sunslide-hidden-slide').addClass('sunslide-next-slide');
                 if (settings.captions) {
-                    caption.text(n.find('img').attr('alt'));
+                    caption.text(getCaption(n.find('img,svg')));
                 }
             }
 
@@ -155,23 +169,27 @@
                 container.append(play_button);
             }
 
-            // determine aspect ratios
+            // determine aspect ratios of each image
             slides.each(function () {
-                var i = $(this).find('img'),
-                    w = i.width(),
-                    h = i.height(),
-                    r = w / h;
-                if (w > max_width) {
-                    max_width = w;
+                var i = $(this).find('img,svg'),
+                    w, h, r;
+                if (i.is('svg') || i[0].complete) {
+                    // use the width and height of the image if it's loaded
+                    w = i.width();
+                    h = i.height();
+                } else {
+                    // use the width and height attributes if it's not loaded
+                    w = parseInt(i.attr('width') || 0, 10);
+                    h = parseInt(i.attr('height') || 0, 10);
                 }
-                if (h > max_height) {
-                    max_height = h;
-                }
-                if (r > max_ratio) {
-                    max_ratio = r;
-                }
-                if (r < min_ratio) {
-                    min_ratio = r;
+                r = w / h;
+                max_width = Math.max(w, max_width);
+                max_height = Math.max(h, max_height);
+                max_ratio = Math.max(r, max_ratio);
+                min_ratio = Math.min(r, min_ratio);
+                if (!first_width) {
+                    first_width = w;
+                    first_height = h;
                 }
             });
             if (settings.ratio === 'min') {
@@ -179,7 +197,7 @@
             } else if (settings.ratio === 'max') {
                 resize_ratio = max_ratio;
             } else {
-                resize_ratio = t.find('img:first').width() / t.find('img:first').height();
+                resize_ratio = first_width / first_height;
             }
             // resize to the selected ratio
             container.css('height', Math.ceil(max_width / resize_ratio) + 'px');
@@ -192,7 +210,7 @@
             $(slides[1]).removeClass('sunslide-hidden-slide').addClass('sunslide-next-slide');
 
             if (settings.captions) {
-                caption = $('<div class="sunslide-caption">' + slides.filter('.sunslide-active-slide').find('img').attr('alt') + '</div>');
+                caption = $('<div class="sunslide-caption">' + getCaption(slides.filter('.sunslide-active-slide').find('img,svg')) + '</div>');
                 container.append(caption);
             }
 

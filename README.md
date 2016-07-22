@@ -1,6 +1,10 @@
 # jquery.sunslide
 
-_A very basic, jQuery-based, responsive image slider/carousel with aspect ratio support for variable sized images._
+_A very basic, jQuery-based, responsive image slider/carousel with captions and aspect ratio support for variable sized images._
+
+Captions are pulled from the `alt` parameter of the `img` tag.
+
+SVGs are supported, and like images, must include a pixel `width` and `height` attribute. Captions are pulled from the SVG’s `desc` or `title` tags.
 
 ## Sample
 
@@ -24,8 +28,8 @@ _A very basic, jQuery-based, responsive image slider/carousel with aspect ratio 
     <script src="/path/to/jquery.sunslide.min.js"></script>
     <script>
     !(function ($) {
-        // these options are the default options for the plugin
-        // and are only included for reference
+        // These options are the default options for the plugin.
+        // They are only included for reference.
         var options = {
             auto: true,
             captions: true,
@@ -37,16 +41,20 @@ _A very basic, jQuery-based, responsive image slider/carousel with aspect ratio 
             ratio: "first",
             stopOnNav: true,
             timeout: 5000
-        }
+        };
         $('.sunslide').sunslide(options);
     })(jQuery);
     </script>
 </body>
 ```
 
-## Dependencies
+## Dependencies and Assumptions
 
-- jQuery 1.9+
+The plugin should work with jQuery 1.9 or later.
+
+Each slide must contain only `<img>` or `<svg>` tag which should include both a `width` and `height` attribute.
+
+`<img>` tags must contain the `alt` attribute (which is already required for acessibility). `<svg>`
 
 ## Options
 

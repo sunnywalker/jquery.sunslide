@@ -1,6 +1,6 @@
 ul.sunslide { list-style-type: none; padding: 0; margin: 0; }
 .sunslide li { margin: 0; padding: 0; }
-.sunslide img { width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
+.sunslide img, .sunslide svg { width: 100%; max-width: 100%; height: auto; margin: 0 auto; }
 .sunslide-wrapper { background-color: black; max-width: 100%; overflow: hidden; }
 .sunslide-nav { text-decoration: none; color: white; background-color: black; background-color: rgba(0, 0, 0, 0.8); position: absolute; padding: 0 4px; z-index: 5; }
 .sunslide-nav.previous { left: 0; top: 50%; margin-top: -1em; line-height: 2em; padding: 0 4px; }
