@@ -50,19 +50,23 @@
                     clearInterval(timer);
                     timer = setInterval(nextSlide, settings.timeout);
                     playing = true;
-                    play_button && play_button.find('use').attr('xlink:href', '#' + namespace + '-pause-icon');
+                    if (play_button) {
+                        play_button.find('use').attr('xlink:href', '#' + namespace + '-pause-icon');
+                    }
                 }
             }
 
-            function start() {
-                settings.auto = true;
-                resetTimer();
-            }
+            // function start() {
+            //     settings.auto = true;
+            //     resetTimer();
+            // }
 
             function stop() {
                 settings.auto = false;
                 clearInterval(timer);
-                play_button && play_button.find('use').attr('xlink:href', '#' + namespace + '-play-icon');
+                if (play_button) {
+                    play_button.find('use').attr('xlink:href', '#' + namespace + '-play-icon');
+                }
             }
 
             function pause() {
