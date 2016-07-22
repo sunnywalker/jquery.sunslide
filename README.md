@@ -18,7 +18,7 @@ SVGs are supported, and like images, **must include a pixel `width` and `height`
     <!-- ... unrelated content ... -->
     <ul class="sunslide">
         <li><img src="images/cats-0.jpg" alt="Cats 0 caption" width="900" height="506"></li>
-        <li><img src="images/cats-1.jpg" alt="Cats 1 caption" width="900" height="506"></li>
+        <li><svg width="900" height="506"><title>Cats 1 caption</title><!-- awesome svg cat code --></svg></li>
         <li><img src="images/cats-2.jpg" alt="Cats 2 caption" width="640" height="480"></li>
         <li><img src="images/cats-3.jpg" alt="Cats 3 caption" width="900" height="506"></li>
         <li><img src="images/cats-4.jpg" alt="Cats 4 caption" width="1000" height="500"></li>
