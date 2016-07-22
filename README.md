@@ -2,6 +2,8 @@
 
 _A very basic, jQuery-based, responsive image slider/carousel with captions and aspect ratio support for variable sized images._
 
+[View the project on GitHub](https://github.com/sunnywalker/jquery.sunslide)
+
 Captions are pulled from the `alt` parameter of the `img` tag.
 
 SVGs are supported, and like images, **must include a pixel `width` and `height` attribute**. Captions are pulled from the SVG’s `<desc>` or `<title>` tags.
@@ -47,6 +49,8 @@ SVGs are supported, and like images, **must include a pixel `width` and `height`
     </script>
 </body>
 ```
+
+[A samples page](index.html) is also included.
 
 ## Dependencies and Assumptions
 
