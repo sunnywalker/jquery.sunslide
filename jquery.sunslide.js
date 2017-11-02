@@ -4,11 +4,11 @@
         // Default settings
         var settings = $.extend({
             "auto": true,             // Boolean: Animate automatically, true or false
-            "captions": true,         // Boolean: Add captions based on alt text, true or false
-            "nav": true,              // Boolean: Show navigation, true or false
+            "captions": true,         // Boolean: Add captions based on alt text, true or false; recommended for a11y
+            "nav": true,              // Boolean: Show navigation, true or false; recommended for a11y
             "nextText": "&rarr;",     // String: Text for the "next" button
             "pause": true,            // Boolean: Pause on hover over the slider, true or false
-            "play": true,             // Boolean: Add play/pause button, true or false
+            "play": true,             // Boolean: Add play/pause button, true or false; recommended for a11y
             "prevText": "&larr;",     // String: Text for the "previous" button
             "ratio": "first",         // String: Size to 'min', 'max', or 'first' (first slide) ratio
             "stopOnNav": true,        // Boolean: Stop auto slide transitions when a nav is interacted with, true or false
@@ -41,10 +41,12 @@
             container.css({
                 'position': 'relative'
             });
+
             slides = t.children();
             if (slides.length < 2) {
                 return;
             }
+
             vp_width = container.width();
 
             function resetTimer() {
@@ -56,6 +58,8 @@
                         play_button.find('use').attr('xlink:href', '#' + namespace + '-pause-icon');
                     }
                 }
+                // recalc the ratio
+                container.css('height', Math.ceil(container.width() / resize_ratio) + 'px');
             }
 
             // function start() {
@@ -214,7 +218,12 @@
                 container.append(caption);
             }
 
+            // add a skip link to the container to jump over the slider, for a11y
+            container.prepend('<a href="#skip-over-' + namespace + '" class="sunslide-skip">Skip image slider</a>');
+            container.append('<span id="skip-over-' + namespace + '"></span>');
+
             resetTimer();
+            $(window).triggerHandler('resize');
 
             if (settings.pause) {
                 container.on('mouseenter', pause).on('mouseleave', resume);
